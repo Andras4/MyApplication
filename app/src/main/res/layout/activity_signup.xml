@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sign_up_parent_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/sapilogo"
+        android:layout_width="238dp"
+        android:layout_height="193dp"
+        android:src="@drawable/ic_sapi"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/app_name"
+        android:textColor="@color/colorLoginRegisterText"
+        android:textSize="31sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sapilogo" />
+
+    <EditText
+        android:id="@+id/register_first_name"
+        style="@style/FullWidthEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/colorLoginRegisterText"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/first_name"
+        android:textColor="@color/colorLoginRegisterText"
+        android:textColorHint="@color/colorLoginRegisterText"
+        android:textColorLink="@color/colorLoginRegisterText"
+        android:textCursorDrawable="@null"
+        android:textSize="21sp"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appname" />
+
+    <EditText
+        android:id="@+id/register_last_name"
+        style="@style/FullWidthEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorLoginRegisterText"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/last_name"
+        android:textColor="@color/colorLoginRegisterText"
+        android:textColorHint="@color/colorLoginRegisterText"
+        android:textColorLink="@color/colorLoginRegisterText"
+        android:textCursorDrawable="@null"
+        android:textSize="21sp"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_first_name" />
+
+    <EditText
+        android:id="@+id/register_phone_number"
+        style="@style/FullWidthEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorLoginRegisterText"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:textColor="@color/colorLoginRegisterText"
+        android:textColorHint="@color/colorLoginRegisterText"
+        android:textColorLink="@color/colorLoginRegisterText"
+        android:textCursorDrawable="@null"
+        android:textSize="21sp"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_last_name" />
+
+    <Button
+        android:id="@+id/button_sign_up"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_phone_number"
+        android:textStyle="bold"
+        android:backgroundTint="@color/colorButton"
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/sign_up"
+        android:textColor="@color/colorPrimary" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <EditText
+        android:id="@+id/editTextEnterCode"
+        style="@style/FullWidthEditText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/colorLoginRegisterText"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/enter_code_received"
+        android:textColor="@color/colorLoginRegisterText"
+        android:textColorHint="@color/colorLoginRegisterText"
+        android:textColorLink="@color/colorLoginRegisterText"
+        android:textCursorDrawable="@null"
+        android:textSize="21sp"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/button_verify"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEnterCode"
+        android:textStyle="bold"
+        android:backgroundTint="@color/colorButton"
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/verify"
+        android:textColor="@color/colorPrimary" />
+
+</android.support.constraint.ConstraintLayout>
