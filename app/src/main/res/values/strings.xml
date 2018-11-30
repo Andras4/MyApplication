@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <!--app name-->
+    <string name="app_name">Sapientia advertiser</string>
+
+    <!--login-->
+    <string name="phone_number">Phone Number</string>
+    <string name="login">Sign in</string>
+    <string name="login_sign_up">Do you have an account? If not Sign Up</string>
+
+    <!--sign_up-->
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="sign_up">Sign up</string>
+
+    <!--sign_up_code-->
+    <string name="enter_code_received">Enter code received</string>
+    <string name="verify">Verify</string>
 </resources>
