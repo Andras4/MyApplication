@@ -1,9 +1,12 @@
 package com.example.andras.myapplication;
 
+import android.content.DialogInterface;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
 
+    private static final String TAG = RegisterActivity.class.getSimpleName();
     EditText editTextFirstName, editTextLastName, editTextPhoneNumber;
 
     FirebaseAuth mAuth;
@@ -43,11 +47,40 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mShowAlertDialogSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String firstName = editTextFirstName.getText().toString();
+                String lastName = editTextLastName.getText().toString();
+                String phone = editTextPhoneNumber.getText().toString();
+                if(firstName.isEmpty()) {
+                    editTextFirstName.setError("Please fill out this field.");
+                    editTextFirstName.requestFocus();
+                    return;
+                }
+                if(lastName.isEmpty()) {
+                    editTextLastName.setError("Last name is required");
+                    editTextLastName.requestFocus();
+                    return;
+                }
+
+                if(phone.isEmpty()) {
+                    editTextPhoneNumber.setError("Phone number is required");
+                    editTextPhoneNumber.requestFocus();
+                    return;
+                }
+                if(phone.length() < 10) {
+                    editTextPhoneNumber.setError("Please enter a valid phone number");
+                    editTextPhoneNumber.requestFocus();
+                    return;
+                }
+
                 sendVerificationCode();
+
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(RegisterActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_enter_code_received, null);
-                final EditText editTextCode = findViewById(R.id.editTextEnterCode);
-                Button buttonVerify = findViewById(R.id.button_verify);
+                final EditText editTextCode = mView.findViewById(R.id.editTextEnterCode);
+                Button buttonVerify = mView.findViewById(R.id.button_verify);
+                //Button buttonCancel = mView.findViewById(R.id.button_cancel);
+
+                mBuilder.setView(mView);
 
                 buttonVerify.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -57,9 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         signInWithPhoneAuthCredential(credential);
                     }
                 });
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+                mBuilder.show();
             }
         });
     }
@@ -83,33 +114,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void sendVerificationCode() {
-        String firstName = editTextFirstName.getText().toString();
-        String lastName = editTextLastName.getText().toString();
-        String phone = editTextPhoneNumber.getText().toString() ;
-
-        if(firstName.isEmpty()) {
-            editTextFirstName.setError("First name is required");
-            editTextFirstName.requestFocus();
-            return;
-        }
-
-        if(lastName.isEmpty()) {
-            editTextLastName.setError("Last name is required");
-            editTextLastName.requestFocus();
-            return;
-        }
-
-        if(phone.isEmpty()) {
-            editTextPhoneNumber.setError("Phone number is required");
-            editTextPhoneNumber.requestFocus();
-            return;
-        }
-
-        if(phone.length() < 10) {
-            editTextPhoneNumber.setError("Please enter a valid phone number");
-            editTextPhoneNumber.requestFocus();
-            return;
-        }
+        String phone = editTextPhoneNumber.getText().toString();
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phone,
@@ -122,16 +127,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-
+            Log.d(TAG, "onVerificationCompleted:" + phoneAuthCredential);
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-
+            Log.w(TAG, "onVerificationFailed", e);
         }
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+            Log.d(TAG, "onCodeSent:" + s);
             super.onCodeSent(s, forceResendingToken);
 
             codeSent = s;

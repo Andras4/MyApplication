@@ -15,4 +15,5 @@
     <!--sign_up_code-->
     <string name="enter_code_received">Enter code received</string>
     <string name="verify">Verify</string>
+    <string name="cancel">Cancel</string>
 </resources>
